@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from"axios"
+import { useNavigate } from 'react-router-dom';
+  import { ToastContainer, toast } from 'react-toastify';
 import BackEnd from"../config/BackEnd"
 const Register = () => {
   // State to handle the "Role" selection (Founder, Investor, Specialist)
   const [selectedRole, setSelectedRole] = useState('founder');
-
+const navigate=useNavigate()
 const [input,setInput]=useState({})
 
 const handleInput=(e)=>{
@@ -12,22 +14,27 @@ const handleInput=(e)=>{
     let name=e.target.name;
     let value=e.target.value
     setInput(values=>({...values,[name]:value}));
-    console.log(input)
-
-
-
-
-    
+    console.log(input)   
 }
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    let api = `${BackEnd}/user/registration`;
+    const response = await axios.post(api, input);
 
-    const handleSubmit=async(e)=>{
-        e.preventDefault();
-
-        let api=`${BackEnd}/user/registration`; 
-        const response= await axios.post(api,input);
-        console.log()
+    toast.success(response.data.msg);   // center me show hoga
+navigate("/login")
+    setInput({});
+  } catch (error) {
+    if (error.response && error.response.data.msg) {
+      toast.error(error.response.data.msg);
+    } else {
+      toast.error("Something went wrong!");
     }
+  }
+};
+
 
 
 
@@ -75,7 +82,7 @@ const handleInput=(e)=>{
             <label className="block text-gray-400 text-xs mb-1 ml-1">Email Address</label>
             <input
               type="email"
-              placeholder="name@example.com"
+              placeholder="Enter Email"
               name='email' onChange={handleInput}
               className="w-full bg-[#1a1a1a] text-gray-300 border border-gray-800 rounded-md py-3 px-4 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
             />
@@ -107,8 +114,11 @@ const handleInput=(e)=>{
             <label className="block text-gray-400 text-xs mb-1 ml-1">Password</label>
             <input
               type="password"
-              placeholder="••••••••"
-              name='password' onChange={handleInput}
+            minLength={8}
+            maxLength={8}
+            placeholder=" password"       
+            required
+          name='password' onChange={handleInput}
               className="w-full bg-[#1a1a1a] text-gray-300 border border-gray-800 rounded-md py-3 px-4 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
             />
           </div>

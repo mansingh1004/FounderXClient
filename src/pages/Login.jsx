@@ -1,32 +1,102 @@
 import bgImage from "../images/back.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import BackEnd from "../config/BackEnd"
+import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 const Login = () => {
+
   const navigate=useNavigate();
     const [email, setEmail] = useState("");
+
     const [password, setPassword]= useState("");
 
   
 
-  const handleSubmit =async (e) => {
-    e.preventDefault();
-   let api=`${BackEndUrl}/user/login`;
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    let api = `${BackEnd}/user/login`;
+
+    const response = await axios.post(api, { email, password });
+
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("username", response.data.userName);
+
+    toast.success("Login Successful!");
+    window.dispatchEvent(new Event("user-logged-in"));
+    navigate("/");
+  } catch (error) {
+    if (error.response && error.response.data.msg) {
+      toast.error(error.response.data.msg);
+    } else {
+      toast.error("Something went wrong!");
+    }
+  }
+};
+
+
+
+
+
+
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   try {
+//     let api = `${BackEnd}/user/login`;
+
+//     const response = await axios.post(api, { email, password });
+
+//     localStorage.setItem("token", response.data.token);
+// localStorage.setItem("username", response.data.userName);
+//     toast.success("Login Successful!");   // success toast
+
+//     navigate("/");
+//   } catch (error) {
+//     if (error.response && error.response.data.msg) {
+//       toast.error(error.response.data.msg);   // backend error
+//     } else {
+//       toast.error("Something went wrong!");
+//     }
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+  // const handleSubmit =async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     let api=`${BackEnd}/user/login`;
   
     
   
-   const response=await axios.post(api,{email,password})
-   console.log(response);
-   navigate("")
-    // toast.success(response.data.message)
-   
-    toast.success(response.data.message, {
-      position: "top-center",
-      autoClose: 4000, // Toast disappears after 2s
-    });    
+  //  const response=await axios.post(api,{email,password})
+  //  console.log(response.data);
 
-    localStorage.setItem("token", response.data.accessToken);
-  };
+  //  localStorage.setItem("token",response.data.token)
+  //  navigate("/")
+  //   toast.success(response.data.msg)
+   
+
+
+  //   } catch (error) {
+  //     console.log(error.response.data.msg)
+  //   }
+   
+    
+
+  // };
 
 
 
@@ -79,9 +149,6 @@ const Login = () => {
  value={password}
         onChange={(e)=>{setPassword(e.target.value)}} 
         
-              
-
-
             required
             className="w-full bg-white text-black rounded-md py-3 px-4 outline-none text-sm sm:text-base"
           /> 
@@ -100,10 +167,16 @@ const Login = () => {
             // onClick={() => navigate("/login")}
             className="w-full bg-[#5cb85c] hover:bg-[#4cae4c] text-white font-bold py-3 rounded-md transition text-sm sm:text-base"
          
-          onSubmit={handleSubmit} 
+          onClick={handleSubmit} 
          >
             Log In
           </button>
+            <Link
+  to="/forgotpassword"
+  className="text-white hover:text-gray-200 transition"
+>
+  ForgotPassword
+</Link>
 
           {/* Social Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
