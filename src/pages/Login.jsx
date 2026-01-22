@@ -25,6 +25,7 @@ const handleSubmit = async (e) => {
 
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("username", response.data.userName);
+    localStorage.setItem("useremail",response.data.userEmail)
 
     toast.success("Login Successful!");
     window.dispatchEvent(new Event("user-logged-in"));
@@ -114,7 +115,7 @@ const handleSubmit = async (e) => {
       }}
     >
       {/* Content */}
-      <div className="relative z-10 w-full max-w-md px-6 sm:px-10 lg:px-12 lg:ml-24 xl:ml-32">
+      <div className="relative z-10 w-full max-w-md px-6 sm:px-8 lg:px-12 lg:ml-24 xl:ml-32">
         
         {/* Header */}
         <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-2">
@@ -126,7 +127,7 @@ const handleSubmit = async (e) => {
         </p>
 
         {/* Form */}
-        <form className="space-y-4">
+        <form className="space-y-4  " >
           <input
             type="email"
             placeholder="Enter Email"
@@ -135,7 +136,7 @@ const handleSubmit = async (e) => {
 
              value={email} onChange={(e)=>{setEmail(e.target.value)}}
             required
-            className="w-full bg-white text-black rounded-md py-3 px-4 outline-none text-sm sm:text-base"
+            className="w-full m-3   bg-white text-black rounded-md py-3 px-4 outline-none text-sm sm:text-base"
         
         
         
@@ -150,7 +151,7 @@ const handleSubmit = async (e) => {
         onChange={(e)=>{setPassword(e.target.value)}} 
         
             required
-            className="w-full bg-white text-black rounded-md py-3 px-4 outline-none text-sm sm:text-base"
+            className="w-full m-3 bg-white text-black rounded-md py-3 px-4 outline-none text-sm sm:text-base"
           /> 
 
           {/* Remember Me */}
@@ -165,7 +166,7 @@ const handleSubmit = async (e) => {
           <button
             type="submit"
             // onClick={() => navigate("/login")}
-            className="w-full bg-[#5cb85c] hover:bg-[#4cae4c] text-white font-bold py-3 rounded-md transition text-sm sm:text-base"
+            className="w-full m-3 bg-[#5cb85c] hover:bg-[#4cae4c] text-white font-bold py-3 rounded-md transition text-sm sm:text-base"
          
           onClick={handleSubmit} 
          >
@@ -173,24 +174,24 @@ const handleSubmit = async (e) => {
           </button>
             <Link
   to="/forgotpassword"
-  className="text-white hover:text-gray-200 transition"
+  className="text-white hover:text-gray-200  m-3 transition"
 >
   ForgotPassword
 </Link>
 
           {/* Social Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <button className="flex-1 bg-[#1e1e1e] text-gray-300 text-xs sm:text-sm py-2 rounded-md border border-gray-700 hover:bg-gray-800">
+          <div className="flex flex-col sm:flex-row gap-3 m-3 pt-2">
+            <button className="flex-1  bg-[#1e1e1e] text-gray-300 text-xs sm:text-sm py-2 rounded-md border border-gray-700 hover:bg-gray-800">
               Sign in with Google
             </button>
-            <button className="flex-1 bg-[#1e1e1e] text-gray-300 text-xs sm:text-sm py-2 rounded-md border border-gray-700 hover:bg-gray-800">
+            <button className="flex-1  bg-[#1e1e1e] text-gray-300 text-xs sm:text-sm py-2 rounded-md border border-gray-700 hover:bg-gray-800">
               Sign in with LinkedIn
             </button>
           </div>
         </form>
 
         {/* Pagination */}
-        <div className="flex space-x-2 my-10 justify-center lg:justify-start">
+        {/* <div className="flex space-x-2 my-10 justify-center lg:justify-start">
           {[...Array(5)].map((_, i) => (
             <span
               key={i}
@@ -199,12 +200,12 @@ const handleSubmit = async (e) => {
               }`}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* Create Account */}
         <button
           onClick={() => navigate("/registration")}
-          className="w-full sm:w-auto bg-[#3498db] hover:bg-[#2980b9] text-white px-8 py-3 rounded-full font-semibold text-sm transition"
+          className="w-full m-3 sm:w-auto bg-[#3498db] hover:bg-[#2980b9] text-white px-8 py-3 rounded-full font-semibold text-sm transition"
         >
           Create an Account
         </button>

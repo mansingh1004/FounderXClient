@@ -4,7 +4,7 @@ import Header from "./Components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// import Profile from "./pages/Profile";
+import Profile from "./pages/Profile";
 
 import Login from "./pages/Login";
 import Registration from "./pages/Registration"
@@ -18,6 +18,8 @@ import NetworkGraph from "./pages/NetworkGraph";
 import  Features  from "./pages/Features"
 import Testimonials from "./pages/Testimonials";
 import Home from "./pages/Home"
+import AboutUs from "./pages/AboutUs"
+// import Profile from "./pages/Profile"
 
 const App=()=>{
   return(
@@ -31,8 +33,10 @@ const App=()=>{
       <Route path="home" element={<Home/>}/>
       <Route path="header" element={<Header/>}/>
       <Route path="login" element={<Login/>}/>
-      {/* <Route path="profile" element={<Profile/>}/> */}
+      <Route path="herosection" element={<HeroSection/>}/>
+      <Route path="profile" element={<Profile/>}/>
       <Route path="features" element={<Features/>}/>
+      <Route path="aboutus" element={<AboutUs/>}/>
       <Route path="registration" element={<Registration/>}/> 
       <Route path="founder" element={<Founder/>}/>  
       <Route path="testimonials"  element={<Testimonials/>}/>

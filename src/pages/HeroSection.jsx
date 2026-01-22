@@ -62,7 +62,7 @@ useEffect(()=>{
           
           {/* Left Side: Text */}
           <div className="flex-1 text-left">
-            <h1 className="text-5xl md:text-7xl font-extrabold text-[rgb(246,249,252)] leading-tight mb-4">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-[#f6f9fc] leading-tight mb-4">
               Where Vision <br /> 
               Meets <span className="text-[#ff7e21]">Velocity</span>
             </h1>
@@ -88,7 +88,7 @@ useEffect(()=>{
 
         {/* Bottom Content: Matchmaker Section */}
         <div className="mt-10">
-          <h3 className="text-[#001d3d] text-2xl font-bold mb-6">Matchmaker</h3>
+          <h3 className="text-[#eff2f6] text-2xl font-bold mb-6">Matchmaker</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
