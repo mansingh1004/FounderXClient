@@ -13,6 +13,11 @@ const FloatingParticles = () => {
     opacity: Math.random() * 0.5 + 0.1,
   }));
 
+
+ 
+
+
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((p) => (
@@ -95,9 +100,13 @@ export default function HeroSection() {
   useEffect(() => setLoaded(true), []);
 
   return (
+
+
+    
     <div className="min-h-screen bg-[#020203] text-white overflow-hidden relative font-sans selection:bg-cyan-500/30">
       <FloatingParticles />
 
+ 
       {/* Background Gradients */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[120px] animate-pulse-slow"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
@@ -222,6 +231,11 @@ export default function HeroSection() {
         }
         .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
       `}</style>
+
+
+     
     </div>
+
+
   );
 }

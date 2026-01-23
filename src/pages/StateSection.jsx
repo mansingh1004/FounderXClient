@@ -177,12 +177,6 @@
 
 
 
-
-
-
-
-
-
 import React, { useState } from 'react';
 import { 
   Users, 
@@ -220,7 +214,7 @@ const TrustedSection = () => {
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         
         {/* --- LEFT SIDE: Content & Stats --- */}
-        <div className="space-y-8 order-2 lg:order-1">
+        <div className="space-y-8">
           
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
             Trusted by 10,000+ Founders & <br className="hidden md:block" />
@@ -249,7 +243,7 @@ const TrustedSection = () => {
         </div>
 
         {/* --- RIGHT SIDE: iPad Mockup (Animated) --- */}
-        <div className="flex justify-center order-1 lg:order-2 relative">
+        <div className="flex justify-center lg:justify-end relative">
           
           {/* Background Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[600px] bg-gradient-to-tr from-blue-200/40 to-cyan-200/40 blur-[80px] rounded-full pointer-events-none"></div>
@@ -260,7 +254,7 @@ const TrustedSection = () => {
             {/* Screen Content */}
             <div className="h-full w-full bg-white relative flex flex-col items-center">
               
-              {/* Status Bar (Matches Image: 9:41 AM) */}
+              {/* Status Bar */}
               <div className="w-full flex justify-between items-center px-8 py-5 text-sm font-medium text-gray-800 bg-white/80 backdrop-blur-sm z-10 sticky top-0">
                 <span>9:41 AM</span>
                 <div className="flex gap-2 items-center">
@@ -273,12 +267,11 @@ const TrustedSection = () => {
               {/* Scrollable Content Area */}
               <div className="flex-1 w-full flex flex-col items-center justify-center p-8 bg-gradient-to-b from-white to-gray-50">
                 
-                {/* Logo Area - FounderXConnect Style */}
+                {/* Logo Area */}
                 <div className="flex flex-col items-center mb-10">
-                  {/* CSS Logo: Two overlapping diamonds/shapes */}
                   <div className="flex items-center justify-center mb-5 hover:scale-105 transition-transform duration-500 cursor-pointer">
-                     <div className="w-10 h-10 bg-cyan-400 rounded-lg transform rotate-45 mix-blend-multiply opacity-90"></div>
-                     <div className="w-10 h-10 bg-blue-600 rounded-lg transform rotate-45 -ml-5 mix-blend-multiply opacity-90 shadow-lg"></div>
+                      <div className="w-10 h-10 bg-cyan-400 rounded-lg transform rotate-45 mix-blend-multiply opacity-90"></div>
+                      <div className="w-10 h-10 bg-blue-600 rounded-lg transform rotate-45 -ml-5 mix-blend-multiply opacity-90 shadow-lg"></div>
                   </div>
 
                   <h3 className="text-2xl font-black text-gray-900 tracking-tight">FounderXConnect</h3>
@@ -295,7 +288,7 @@ const TrustedSection = () => {
                     <input 
                       type="email" 
                       placeholder="Enter your email" 
-                      className="w-full bg-gray-100 border border-gray-300 rounded-xl px-5 py-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
+                      className="w-full bg-gray-100 border border-gray-300 rounded-2xl px-5 py-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -306,7 +299,7 @@ const TrustedSection = () => {
                     <input 
                       type={showPassword ? "text" : "password"} 
                       placeholder="Create a password" 
-                      className="w-full bg-gray-100 border border-gray-300 rounded-xl px-5 py-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm pr-12"
+                      className="w-full bg-gray-100 border border-gray-300 rounded-2xl px-5 py-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm pr-12"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
@@ -318,7 +311,12 @@ const TrustedSection = () => {
                     </button>
                   </div>
 
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-4 transition-all shadow-lg hover:shadow-blue-600/25 transform active:scale-[0.98]">
+                  {/* UPDATED BUTTON:
+                     - Removed: rounded-full
+                     - Added: rounded-xl (Standard rounded corners)
+                     - Kept: mt-10 (Space from inputs)
+                  */}
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-10 mb-2 transition-all shadow-xl hover:shadow-blue-600/30 transform active:scale-[0.98]">
                     <UserPlus size={18} />
                     GET STARTED
                   </button>

@@ -19,6 +19,8 @@ import  Features  from "./pages/Features"
 import Testimonials from "./pages/Testimonials";
 import Home from "./pages/Home"
 import AboutUs from "./pages/AboutUs"
+import ContactUs from "./pages/ContactUs"
+
 // import Profile from "./pages/Profile"
 
 const App=()=>{
@@ -37,6 +39,7 @@ const App=()=>{
       <Route path="profile" element={<Profile/>}/>
       <Route path="features" element={<Features/>}/>
       <Route path="aboutus" element={<AboutUs/>}/>
+      <Route path="contactus" element={<ContactUs/>}/>
       <Route path="registration" element={<Registration/>}/> 
       <Route path="founder" element={<Founder/>}/>  
       <Route path="testimonials"  element={<Testimonials/>}/>

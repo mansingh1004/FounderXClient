@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
-
-const Header = () => {
+const Header = ({ contactRef }) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,9 @@ const [isOpen, setIsOpen] = useState(false);
  const [show, setShow] = useState(false);
 
   
+
+
+
 
 
 
@@ -48,7 +51,7 @@ const toggleDrawer = () => {
       }
     };
 
-    updateUser(); // page load par
+    updateUser(); // page load par  
 
     window.addEventListener("user-logged-in", updateUser);
 
@@ -120,7 +123,7 @@ const toggleDrawer = () => {
           className="hidden lg:block text-[#001d3d] font-medium hover:text-[#ff7e21] transition-colors">
             Home
           </button>
-          <button  
+          {/* <button  
           //  onClick={() => navigate("specialistprofile")}
 
 
@@ -131,7 +134,7 @@ const toggleDrawer = () => {
 
 
           About Us
-          </button>
+          </button> */}
 
 
             <button  
@@ -144,15 +147,23 @@ const toggleDrawer = () => {
           
 
 
+     
+
 
             <button  
           //  onClick={() => navigate("specialistprofile")}
-          // onClick={() => handleNav("specialistprofile")}
+          // onClick={() => handleNav("contactus")}
+
+          
           
           className="hidden lg:block text-[#001d3d] font-medium hover:text-[#ff7e21] transition-colors">
-          Testimonials
+         Contact Us 
 
           </button>
+
+ 
+
+
           {/* Desktop User Profile */}
           {user ? (
             <div 

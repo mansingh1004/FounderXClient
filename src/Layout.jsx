@@ -4,6 +4,8 @@ import HeroSection from "./pages/HeroSection";
 import Footer from "./Components/Footer";
 import StatsSection from "./pages/StateSection";
 import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs"
+import FAQSection from "./pages/FAQSection"
 import Testimonials from "./pages/Testimonials"
 const Layout=()=>{
     return(
@@ -15,6 +17,8 @@ const Layout=()=>{
         <Testimonials/>
         <StatsSection/>
         <AboutUs/>
+        <ContactUs/>
+        <FAQSection/>
         <Footer/>
         
         
