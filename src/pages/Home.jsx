@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Rocket, Leaf, Settings, Wifi, Battery } from 'lucide-react';
-
+import StatsSection from "../pages/StateSection";
+import AboutUs from "../pages/AboutUs";
+import ContactUs from "../pages/ContactUs"
+import FAQSection from "../pages/FAQSection"
+import Testimonials from "../pages/Testimonials"
 // --- Floating Background Particles ---
 const FloatingParticles = () => {
   const particles = Array.from({ length: 30 }).map((_, i) => ({
@@ -101,7 +105,7 @@ export default function HeroSection() {
 
   return (
 
-
+<>
     
     <div className="min-h-screen bg-[#020203] text-white overflow-hidden relative font-sans selection:bg-cyan-500/30">
       <FloatingParticles />
@@ -237,5 +241,14 @@ export default function HeroSection() {
     </div>
 
 
+
+
+     <Testimonials/>
+        <StatsSection/>
+        <AboutUs/>
+        <ContactUs/>
+        <FAQSection/>
+
+</>
   );
 }

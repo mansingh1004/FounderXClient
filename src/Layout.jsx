@@ -14,11 +14,11 @@ const Layout=()=>{
         <Header/>
         <Outlet/>
         {/* <HeroSection/> */}
-        <Testimonials/>
+        {/* <Testimonials/>
         <StatsSection/>
         <AboutUs/>
         <ContactUs/>
-        <FAQSection/>
+        <FAQSection/> */}
         <Footer/>
         
         
