@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Rocket, Leaf, Settings, Wifi, Battery } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import StatsSection from "../pages/StateSection";
 import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs"
@@ -102,6 +103,22 @@ const MatchmakerCard = ({ icon: Icon, title, percentage, theme, delay }) => {
 export default function HeroSection() {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => setLoaded(true), []);
+const navigate=useNavigate();
+
+ const handleNav = (path) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      localStorage.setItem("redirectAfterLogin", path);
+      navigate("/login");
+    } else {
+      navigate(path);
+    }
+  };
+
+
+
+
+
 
   return (
 
@@ -140,9 +157,9 @@ export default function HeroSection() {
             </h3>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-              <MatchmakerCard icon={Rocket} title="I am a Founder" percentage={50} theme="blue" delay={200} />
-              <MatchmakerCard icon={Leaf} title="I am an Investor" percentage={85} theme="green" delay={400} />
-              <MatchmakerCard icon={Settings} title="Specialist" percentage={20} theme="orange" delay={600} />
+           <button onClick={() => handleNav("founder")} >  <MatchmakerCard     icon={Rocket} title="I am a Founder" percentage={50} theme="blue" delay={200}     /></button> 
+        <button   onClick={() => handleNav("investorprofile")}     >     <MatchmakerCard icon={Leaf} title="I am an Investor" percentage={85} theme="green" delay={400} /></button> 
+          <button     onClick={() => handleNav("specialistprofile")}     >   <MatchmakerCard icon={Settings} title="Specialist" percentage={20} theme="orange" delay={600} />   </button> 
             </div>
           </div>
         </div>
