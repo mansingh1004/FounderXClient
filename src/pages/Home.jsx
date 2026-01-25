@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Rocket, Leaf, Settings, Wifi, Battery } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StatsSection from "../pages/StateSection";
 import AboutUs from "../pages/AboutUs";
-import ContactUs from "../pages/ContactUs"
-import FAQSection from "../pages/FAQSection"
+import ContactUs from "../pages/ContactUs";
+import FAQSection from "../pages/FAQSection";
+import ScrollInvestor from "../pages/ScrollInvestor";
+import Offering from "../pages/Offering"
 import Testimonials from "../pages/Testimonials"
 // --- Floating Background Particles ---
 const FloatingParticles = () => {
@@ -17,10 +19,6 @@ const FloatingParticles = () => {
     delay: Math.random() * 5,
     opacity: Math.random() * 0.5 + 0.1,
   }));
-
-
- 
-
 
 
   return (
@@ -100,7 +98,7 @@ const MatchmakerCard = ({ icon: Icon, title, percentage, theme, delay }) => {
 };
 
 // --- Main Hero Section ---
-export default function HeroSection() {
+export default function Home() {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => setLoaded(true), []);
 const navigate=useNavigate();
@@ -115,6 +113,44 @@ const navigate=useNavigate();
     }
   };
 
+
+
+
+
+
+
+
+const authCheck = async () => {
+  const api = `${BackEnd}/user/authuser`;
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    try {
+      const tokenResponse = await axios.post(api, null, {
+        headers: { "x-auth-token": token }
+      });
+
+      if (tokenResponse.data && tokenResponse.data._id) {
+        localStorage.setItem("userValid", true);
+        localStorage.setItem("username", tokenResponse.data.name);
+        localStorage.setItem("useremail", tokenResponse.data.email);
+        localStorage.setItem("userid", tokenResponse.data._id);
+      } else {
+        localStorage.clear(); // or remove token if needed
+        console.log("User not valid");
+      }
+
+    } catch (error) {
+      console.error("Auth Check Failed:", error.response?.data || error.message);
+      localStorage.clear(); // Remove invalid token
+    }
+  }
+};
+
+useEffect(()=>{
+
+  authCheck()
+}, []);
 
 
 
@@ -260,10 +296,13 @@ const navigate=useNavigate();
 
 
 
-     <Testimonials/>
+     
+     <Offering/>
         <StatsSection/>
         <AboutUs/>
         <ContactUs/>
+        <ScrollInvestor/>
+        <Testimonials/>
         <FAQSection/>
 
 </>

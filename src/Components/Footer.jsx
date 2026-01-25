@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaTwitter, FaLinkedin, FaGithub, FaDiscord } from 'react-icons/fa'; 
+import founder from "../images/Founderx.jpeg"
+
 
 const Footer = () => {
   return (
@@ -23,9 +25,21 @@ const Footer = () => {
           {/* Mobile: 1 col, Tablet: 1 col, Laptop: 4 cols */}
           <div className="col-span-1 lg:col-span-4 space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="relative flex items-center justify-center h-10 w-10 bg-slate-800 rounded-xl border border-slate-700 shadow-sm">
-                <div className="absolute w-4 h-4 bg-[#3b82f6] rotate-45 rounded-sm -translate-x-1"></div>
-                <div className="absolute w-4 h-4 bg-[#14b8a6] rotate-45 rounded-sm translate-x-1 mix-blend-screen"></div>
+              {/* <div className="relative flex items-center justify-center h-10 w-10 bg-slate-800 rounded-xl border border-slate-700 shadow-sm"> */}
+                {/* <div className="absolute w-4 h-4 bg-[#3b82f6] rotate-45 rounded-sm -translate-x-1"></div>
+                <div className="absolute w-4 h-4 bg-[#14b8a6] rotate-45 rounded-sm translate-x-1 mix-blend-screen"></div> */}
+
+  <div className="relative flex items-center justify-center h-16 w-16">
+                 <img 
+                     src={founder} 
+                     alt="Logo" 
+                     // Note: Image ke khud ke upar abhi bhi halki shadow hai (shadow-sm). 
+                     // Agar wo bhi hatani ho to yahan se 'shadow-sm' hata dein.
+                     className="h-full w-full rounded-full object-cover shadow-sm border border-gray-100" 
+                 />
+               {/* </div> */}
+
+
               </div>
               <span className="font-bold text-2xl text-white tracking-tight">
                 FounderX<span className="text-[#3b82f6]">Connect</span>

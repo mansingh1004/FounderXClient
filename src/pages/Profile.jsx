@@ -1,192 +1,176 @@
-import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Send, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import React from 'react';
 
-const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+// --- Assets (Simple Star Icon) ---
+const StarIcon = () => (
+  <svg className="w-4 h-4 text-yellow-500 fill-current" viewBox="0 0 20 20">
+    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+  </svg>
+);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+// --- Data with Indian Names ---
+const reviewsRow1 = [
+  {
+    name: "Pratik",
+    role: "CEO, DataFlow",
+    avatar: "RK",
+    color: "bg-indigo-600",
+    text: "Outstanding platform with excellent support. The investor network is truly verified and high-quality."
+  },
+  {
+    name: "Rahul",
+    role: "Founder, HealthApp",
+    avatar: "PS",
+    color: "bg-purple-600",
+    text: "Game-changer for our startup journey. The resources and connections provided are invaluable."
+  },
+  {
+    name: "Shubham",
+    role: "CEO, FinanceAI",
+    avatar: "AP",
+    color: "bg-blue-600",
+    text: "Professional, efficient, and results-driven. Highly recommend to any serious entrepreneur."
+  },
+  {
+    name: "Shreyash",
+    role: "Founder, TechStart",
+    avatar: "NG",
+    color: "bg-indigo-600",
+    text: "This platform has been instrumental in connecting us with the right investors. The process was smooth and results exceeded expectations."
+  }
+];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form Submitted:', formData);
-    alert("Thanks! We'll be in touch shortly.");
-  };
+const reviewsRow2 = [
+  {
+    name: "Yash",
+    role: "CEO, InnovateLab",
+    avatar: "VS",
+    color: "bg-emerald-600",
+    text: "Amazing experience! Found the perfect investor match within weeks. The AI-powered matching system is incredibly accurate."
+  },
+  {
+    name: "Anjali Desai",
+    role: "Founder, GreenTech",
+    avatar: "AD",
+    color: "bg-emerald-600",
+    text: "The one-click pitching feature saved us countless hours. We were able to reach multiple investors simultaneously."
+  },
+  // Duplicating for loop effect
+  {
+    name: "Rajesh bhosale",
+    role: "CEO, DataFlow",
+    avatar: "RK",
+    color: "bg-indigo-600",
+    text: "Outstanding platform with excellent support. The investor network is truly verified and high-quality."
+  },
+  {
+    name: "Priya Sharma",
+    role: "Founder, HealthApp",
+    avatar: "PS",
+    color: "bg-purple-600",
+    text: "Game-changer for our startup journey. The resources and connections provided are invaluable."
+  }
+];
 
-  return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 font-sans">
-      
-      {/* Main Container Card */}
-      <div className="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
-        
-        {/* --- LEFT SIDE: Contact Info --- */}
-        <div className="lg:w-5/12 bg-blue-700 text-white p-10 flex flex-col justify-between relative overflow-hidden">
-          
-          {/* Decorative Circles (Background) */}
-          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-600 rounded-full opacity-50 z-0"></div>
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-600 rounded-full opacity-50 z-0"></div>
+// --- Components ---
 
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in touch</h2>
-            <p className="text-blue-100 text-lg mb-10 leading-relaxed">
-              Have a question about FounderXConnect? We're here to help you find your perfect co-founder or investor.
-            </p>
-
-            <div className="space-y-6">
-              {/* Email */}
-              <div className="flex items-start space-x-4">
-                <div className="bg-blue-600 p-3 rounded-full shrink-0">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Chat with us</h3>
-                  <p className="text-blue-100">support@founderxconnect.com</p>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="flex items-start space-x-4">
-                <div className="bg-blue-600 p-3 rounded-full shrink-0">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Call us</h3>
-                  <p className="text-blue-100">+91 98765 43210</p>
-                  <p className="text-blue-200 text-sm">Mon - Fri, 9am - 6pm</p>
-                </div>
-              </div>
-
-              {/* Office */}
-              <div className="flex items-start space-x-4">
-                <div className="bg-blue-600 p-3 rounded-full shrink-0">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Visit us</h3>
-                  <p className="text-blue-100">
-                    123 Startup Hub, Koramangala<br />
-                    Bangalore, India 560034
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div className="relative z-10 mt-12">
-            <h4 className="font-semibold mb-4">Follow us</h4>
-            <div className="flex space-x-4">
-              <SocialIcon icon={<Facebook size={20} />} />
-              <SocialIcon icon={<Twitter size={20} />} />
-              <SocialIcon icon={<Linkedin size={20} />} />
-              <SocialIcon icon={<Instagram size={20} />} />
-            </div>
-          </div>
-
-        </div>
-
-        {/* --- RIGHT SIDE: Contact Form --- */}
-        <div className="lg:w-7/12 p-10 lg:p-16 bg-white">
-          
-          <h3 className="text-3xl font-bold text-gray-900 mb-2">Send us a message</h3>
-          <p className="text-gray-500 mb-10">We usually respond within 24 hours.</p>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            
-            {/* Name Fields Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">First Name</label>
-                <input 
-                  type="text" 
-                  name="firstName"
-                  placeholder="John"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all outline-none text-gray-800"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Last Name</label>
-                <input 
-                  type="text" 
-                  name="lastName"
-                  placeholder="Doe"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all outline-none text-gray-800"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            {/* Email & Phone Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Email Address</label>
-                <input 
-                  type="email" 
-                  name="email"
-                  placeholder="john@example.com"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all outline-none text-gray-800"
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Phone (Optional)</label>
-                <input 
-                  type="tel" 
-                  name="phone"
-                  placeholder="+91 00000 00000"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all outline-none text-gray-800"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            {/* Message Field */}
-            <div className="space-y-2">
-              <label className="text-sm font-semibold text-gray-700">How can we help?</label>
-              <textarea 
-                rows="4"
-                name="message"
-                placeholder="Tell us about your startup or what you are looking for..."
-                className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all outline-none text-gray-800 resize-none"
-                onChange={handleChange}
-                required
-              ></textarea>
-            </div>
-
-            {/* Submit Button */}
-            <button 
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-blue-600/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
-            >
-              Send Message
-              <Send size={18} />
-            </button>
-
-          </form>
-        </div>
-
+const TestimonialCard = ({ name, role, avatar, color, text }) => (
+  <div className="
+    flex flex-col gap-4 p-6 min-w-[350px] max-w-[350px] rounded-2xl
+    bg-white border border-gray-200 shadow-sm
+    
+    /* Animation & Hover */
+    transition-all duration-300 ease-out
+    hover:shadow-xl hover:-translate-y-1 hover:border-blue-200
+  ">
+    {/* Header: Avatar + Name */}
+    <div className="flex items-center gap-3">
+      {/* Avatar */}
+      <div className={`w-12 h-12 rounded-full ${color} flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-md`}>
+        {avatar}
       </div>
+      {/* Name & Role */}
+      <div className="flex flex-col">
+        <h4 className="text-gray-900 font-bold text-base leading-tight">{name}</h4>
+        <span className="text-gray-500 text-sm font-medium">{role}</span>
+      </div>
+    </div>
+
+    {/* Rating */}
+    <div className="flex items-center gap-1">
+      {[...Array(5)].map((_, i) => (
+        <StarIcon key={i} />
+      ))}
+      <span className="text-gray-600 text-sm ml-2 font-semibold">5.0</span>
+    </div>
+
+    {/* Text */}
+    <p className="text-gray-600 text-sm leading-relaxed">
+      "{text}"
+    </p>
+  </div>
+);
+
+const MarqueeRow = ({ items, direction = "left", speed = "normal" }) => {
+  return (
+    <div className="relative flex overflow-hidden w-full select-none group/row">
+      {/* Scroll Wrapper */}
+      <div 
+        className={`flex gap-6 py-4 w-max hover:[animation-play-state:paused] ${
+          direction === 'right' ? 'animate-scroll-right' : 'animate-scroll-left'
+        }`}
+        style={{ animationDuration: speed === 'slow' ? '80s' : '60s' }}
+      >
+        {/* Render items 3 times for seamless infinite loop */}
+        {[...items, ...items, ...items].map((item, idx) => (
+          <TestimonialCard key={`${item.name}-${idx}`} {...item} />
+        ))}
+      </div>
+
+      {/* Gradient Masks (White Fade) */}
+      <div className="absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none z-10" />
     </div>
   );
 };
 
-// Helper Component for Social Icons
-const SocialIcon = ({ icon }) => {
+export default function TestimonialsSection() {
   return (
-    <a href="#" className="w-10 h-10 rounded-full bg-blue-800 hover:bg-white hover:text-blue-700 flex items-center justify-center transition-all duration-300">
-      {icon}
-    </a>
+    <section className="bg-white min-h-screen flex flex-col justify-center py-20 overflow-hidden relative">
+      
+      {/* CSS for animation */}
+      <style>{`
+        @keyframes scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+        @keyframes scroll-right {
+          0% { transform: translateX(-33.33%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-scroll-left {
+          animation: scroll-left 60s linear infinite;
+        }
+        .animate-scroll-right {
+          animation: scroll-right 60s linear infinite;
+        }
+      `}</style>
+
+      {/* Section Header */}
+      <div className="text-center mb-16 px-4">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+          What Our People Think About Us
+        </h2>
+        <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+          Trusted by thousands of startup founders and investors across India.
+        </p>
+      </div>
+
+      {/* Rows */}
+      <div className="flex flex-col gap-8">
+        <MarqueeRow items={reviewsRow1} direction="left" speed="normal" />
+        <MarqueeRow items={reviewsRow2} direction="right" speed="slow" />
+      </div>
+
+    </section>
   );
 }
-
-export default ContactPage;

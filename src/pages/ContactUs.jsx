@@ -7,22 +7,6 @@ import { Mail, MapPin, Phone, Send, Facebook, Twitter, Linkedin, Instagram } fro
 const ContactPage = () => {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

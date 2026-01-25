@@ -174,10 +174,7 @@
 
 
 
-
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Users, 
   Briefcase, 
@@ -189,6 +186,7 @@ import {
   Eye, 
   EyeOff 
 } from 'lucide-react';
+import founder from "../images/Founderx.jpeg"
 
 const TrustedSection = () => {
   // Live state for the inputs inside the iPad
@@ -227,12 +225,33 @@ const TrustedSection = () => {
             into real startups—fast, efficiently, and hassle-free.
           </p>
 
-          {/* Stats Grid */}
+          {/* Stats Grid - UPDATED with numeric values for animation */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
-            <StatItem icon={<Users className="text-blue-600" />} count="10,000+" label="Founders" />
-            <StatItem icon={<Briefcase className="text-blue-600" />} count="500+" label="Investors" />
-            <StatItem icon={<Link2 className="text-blue-600" />} count="1,500+" label="Total Matches" />
-            <StatItem icon={<Rocket className="text-blue-600" />} count="2k" label="Startup Pitched" />
+            <StatItem 
+              icon={<Users className="text-blue-600" />} 
+              endCount={10000} 
+              suffix="+" 
+              label="Founders" 
+            />
+            <StatItem 
+              icon={<Briefcase className="text-blue-600" />} 
+              endCount={500} 
+              suffix="+" 
+              label="Investors" 
+            />
+            <StatItem 
+              icon={<Link2 className="text-blue-600" />} 
+              endCount={1500} 
+              suffix="+" 
+              label="Total Matches" 
+            />
+            <StatItem 
+              icon={<Rocket className="text-blue-600" />} 
+              endCount={2000} 
+              suffix="" // Using raw number 2000, formatted later
+              label="Startup Pitched" 
+              customFormat={(n) => (n / 1000) + "k"} // Custom formatter for '2k'
+            />
           </div>
 
           <div className="pt-6">
@@ -252,109 +271,114 @@ const TrustedSection = () => {
           <div className="animate-ipad-float relative border-[10px] border-gray-800 rounded-[2.5rem] h-[640px] w-[460px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] bg-gray-900 overflow-hidden ring-1 ring-gray-900/50">
             
             {/* Screen Content */}
-            <div className="h-full w-full bg-white relative flex flex-col items-center">
-              
-              {/* Status Bar */}
-              <div className="w-full flex justify-between items-center px-8 py-5 text-sm font-medium text-gray-800 bg-white/80 backdrop-blur-sm z-10 sticky top-0">
-                <span>9:41 AM</span>
-                <div className="flex gap-2 items-center">
-                  <Wifi size={16} />
-                  <span className="text-xs font-semibold">100%</span>
-                  <Battery size={18} />
-                </div>
+       <div className="h-screen w-full bg-white relative flex flex-col overflow-hidden">
+      
+      {/* 1. STATUS BAR (Top Fixed) */}
+      {/* CHANGES HERE: Removed 'shadow-sm' from the class list below */}
+      <div className="w-full flex justify-between items-center px-8 py-4 text-sm font-medium text-gray-800 bg-white/90 backdrop-blur-md z-20 shrink-0">
+        <span>9:41 AM</span>
+        <div className="flex gap-2 items-center">
+          <Wifi size={16} />
+          <span className="text-xs font-semibold">100%</span>
+          <Battery size={18} />
+        </div>
+      </div>
+
+      {/* 2. SCROLLABLE CONTENT AREA */}
+      <div className="flex-1 w-full overflow-y-auto bg-gradient-to-b from-white to-gray-50">
+        <div className="flex flex-col items-center justify-center p-6 min-h-full">
+          
+          {/* Logo Area */}
+          <div className="flex flex-col items-center mb-6 mt-2">
+            <div className="flex items-center justify-center mb-3 hover:scale-105 transition-transform duration-500 cursor-pointer">
+              <div className="relative flex items-center justify-center h-16 w-16">
+                <img 
+                    src={founder} 
+                    alt="Logo" 
+                    // Note: Image ke khud ke upar abhi bhi halki shadow hai (shadow-sm). 
+                    // Agar wo bhi hatani ho to yahan se 'shadow-sm' hata dein.
+                    className="h-full w-full rounded-full object-cover shadow-sm border border-gray-100" 
+                />
               </div>
-
-              {/* Scrollable Content Area */}
-              <div className="flex-1 w-full flex flex-col items-center justify-center p-8 bg-gradient-to-b from-white to-gray-50">
-                
-                {/* Logo Area */}
-                <div className="flex flex-col items-center mb-10">
-                  <div className="flex items-center justify-center mb-5 hover:scale-105 transition-transform duration-500 cursor-pointer">
-                      <div className="w-10 h-10 bg-cyan-400 rounded-lg transform rotate-45 mix-blend-multiply opacity-90"></div>
-                      <div className="w-10 h-10 bg-blue-600 rounded-lg transform rotate-45 -ml-5 mix-blend-multiply opacity-90 shadow-lg"></div>
-                  </div>
-
-                  <h3 className="text-2xl font-black text-gray-900 tracking-tight">FounderXConnect</h3>
-                  <p className="text-sm text-gray-500 text-center mt-2 font-medium">
-                    Find cofounders, investors & build faster.
-                  </p>
-                </div>
-
-                {/* Live Form Inputs */}
-                <div className="space-y-5 w-full max-w-[340px] mx-auto">
-                  
-                  {/* Email Input */}
-                  <div className="group">
-                    <input 
-                      type="email" 
-                      placeholder="Enter your email" 
-                      className="w-full bg-gray-100 border border-gray-300 rounded-2xl px-5 py-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                  
-                  {/* Password Input with Toggle */}
-                  <div className="group relative">
-                    <input 
-                      type={showPassword ? "text" : "password"} 
-                      placeholder="Create a password" 
-                      className="w-full bg-gray-100 border border-gray-300 rounded-2xl px-5 py-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm pr-12"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button 
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-blue-600 focus:outline-none"
-                    >
-                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                    </button>
-                  </div>
-
-                  {/* UPDATED BUTTON:
-                     - Removed: rounded-full
-                     - Added: rounded-xl (Standard rounded corners)
-                     - Kept: mt-10 (Space from inputs)
-                  */}
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-10 mb-2 transition-all shadow-xl hover:shadow-blue-600/30 transform active:scale-[0.98]">
-                    <UserPlus size={18} />
-                    GET STARTED
-                  </button>
-                </div>
-
-                {/* Footer / Terms */}
-                <p className="text-[11px] text-gray-400 text-center mt-6">
-                  By signing up, you agree to our <span className="underline cursor-pointer hover:text-blue-600">Terms of Service</span>.
-                </p>
-
-                {/* Social Proof Avatars */}
-                <div className="mt-8">
-                  <p className="text-center text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">
-                    Join these amazing people!
-                  </p>
-                  <div className="flex justify-center -space-x-3">
-                    {[1,2,3,4,5].map((i) => (
-                      <div key={i} className={`w-10 h-10 rounded-full border-[3px] border-white flex items-center justify-center text-[10px] font-bold text-white shadow-md transform hover:scale-110 hover:z-10 transition-all cursor-pointer
-                        ${i === 1 ? 'bg-orange-500' : ''}
-                        ${i === 2 ? 'bg-emerald-500' : ''}
-                        ${i === 3 ? 'bg-blue-500' : ''}
-                        ${i === 4 ? 'bg-purple-500' : ''}
-                        ${i === 5 ? 'bg-pink-500' : ''}
-                      `}>
-                        U{i}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
-              
-              {/* Home Bar */}
-              <div className="w-full flex justify-center pb-6 bg-white">
-                <div className="w-36 h-1.5 bg-gray-300 rounded-full"></div>
-              </div>
-
             </div>
+
+            <h3 className="text-2xl font-black text-gray-900 tracking-tight">FounderXConnect</h3>
+            <p className="text-sm text-gray-500 text-center mt-1 font-medium">
+              Find cofounders, investors & build faster.
+            </p>
+          </div>
+
+          {/* Form Inputs */}
+          <div className="space-y-4 w-full max-w-[340px] mx-auto">
+            
+            {/* Email */}
+            <div className="group">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="w-full bg-gray-100 border border-gray-300 rounded-2xl px-5 py-3.5 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            
+            {/* Password */}
+            <div className="group relative">
+              <input 
+                type={showPassword ? "text" : "password"} 
+                placeholder="Create a password" 
+                className="w-full bg-gray-100 border border-gray-300 rounded-2xl px-5 py-3.5 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm pr-12"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button 
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-blue-600 focus:outline-none"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+
+            {/* GET STARTED Button */}
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 mt-4 mb-2 transition-all shadow-xl hover:shadow-blue-600/30 transform active:scale-[0.98]">
+              <UserPlus size={18} />
+              GET STARTED
+            </button>
+          </div>
+
+          {/* Terms */}
+          <p className="text-[11px] text-gray-400 text-center mt-4">
+            By signing up, you agree to our <span className="underline cursor-pointer hover:text-blue-600">Terms of Service</span>.
+          </p>
+
+          {/* Social Proof */}
+          <div className="mt-6 mb-4">
+            <p className="text-center text-xs font-bold text-gray-400 mb-2 uppercase tracking-wider">
+              Join these amazing people!
+            </p>
+            <div className="flex justify-center -space-x-3">
+              {[1,2,3,4,5].map((i) => (
+                <div key={i} className={`w-9 h-9 rounded-full border-[3px] border-white flex items-center justify-center text-[10px] font-bold text-white shadow-md transform hover:scale-110 hover:z-10 transition-all cursor-pointer
+                  ${i === 1 ? 'bg-orange-500' : ''}
+                  ${i === 2 ? 'bg-emerald-500' : ''}
+                  ${i === 3 ? 'bg-blue-500' : ''}
+                  ${i === 4 ? 'bg-purple-500' : ''}
+                  ${i === 5 ? 'bg-pink-500' : ''}
+                `}>
+                  U{i}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* 3. HOME BAR (Bottom Fixed) */}
+      <div className="w-full flex justify-center pb-6 pt-2 bg-white shrink-0 z-20">
+        <div className="w-36 h-1.5 bg-gray-300 rounded-full"></div>
+      </div>
+
+    </div>
           </div>
         </div>
 
@@ -363,14 +387,69 @@ const TrustedSection = () => {
   );
 };
 
-// Helper Component for Stats
-const StatItem = ({ icon, count, label }) => {
+// --- UPDATED StatItem with Counter Animation ---
+const StatItem = ({ icon, endCount, suffix, label, customFormat }) => {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Animation Logic
+          let start = 0;
+          // Duration of animation in ms
+          const duration = 2000; 
+          // 60fps frame time
+          const frameDuration = 1000 / 60; 
+          // Total frames
+          const totalFrames = Math.round(duration / frameDuration);
+          
+          let frame = 0;
+          
+          const counter = setInterval(() => {
+            frame++;
+            // Ease-out Cubic function: 1 - (1 - t)^3
+            const progress = frame / totalFrames;
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            
+            const currentCount = Math.round(endCount * easeOut);
+            
+            if (frame === totalFrames) {
+              setCount(endCount);
+              clearInterval(counter);
+            } else {
+              setCount(currentCount);
+            }
+          }, frameDuration);
+
+          // Disconnect observer once animation starts so it doesn't restart
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [endCount]);
+
+  // Handle number formatting (e.g., 10000 -> 10,000 or 2000 -> 2k if customFormat exists)
+  const displayCount = customFormat 
+    ? customFormat(count) 
+    : count.toLocaleString();
+
   return (
-    <div className="flex flex-col items-center md:items-start text-center md:text-left group cursor-pointer">
+    <div ref={elementRef} className="flex flex-col items-center md:items-start text-center md:text-left group cursor-pointer">
       <div className="mb-3 p-3 rounded-xl bg-white border border-gray-100 shadow-sm group-hover:shadow-md group-hover:border-blue-100 transition-all">
         {icon}
       </div>
-      <h4 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{count}</h4>
+      <h4 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+        {displayCount}{suffix}
+      </h4>
       <p className="text-sm text-gray-500 font-medium">{label}</p>
     </div>
   );

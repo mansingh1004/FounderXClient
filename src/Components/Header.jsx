@@ -460,7 +460,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-
+import founder from "../images/Founderx.jpeg"
 const Header = ({ contactRef }) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -524,10 +524,13 @@ const Header = ({ contactRef }) => {
           {/* LEFT: Logo Section      */}
           {/* ======================= */}
           <div className="flex items-center space-x-2 flex-shrink-0 cursor-pointer" onClick={() => navigate("/")}>
-            <div className="relative flex items-center h-8 w-10">
-              <div className="absolute left-0 w-5 h-5 bg-[#3b82f6] rotate-45 rounded-sm"></div>
-              <div className="absolute left-3 w-5 h-5 bg-[#14b8a6] rotate-45 rounded-sm"></div>
-            </div>
+           <div className="relative flex items-center justify-center h-8 w-10">
+  <img 
+      src={founder} 
+      alt="Logo" 
+      className="h-8 w-8 rounded-full object-cover shadow-sm" 
+  />
+</div>
             {/* Logo Text */}
             <span className="text-[#001d3d] font-bold text-xl tracking-tight block">
               FounderXConnect
