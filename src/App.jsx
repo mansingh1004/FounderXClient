@@ -20,6 +20,7 @@ import Testimonials from "./pages/Testimonials";
 import Home from "./pages/Home"
 import AboutUs from "./pages/AboutUs"
 import ContactUs from "./pages/ContactUs"
+import Chatbot from "./pages/Chatbot";
 
 // import Profile from "./pages/Profile"
 
@@ -58,6 +59,8 @@ const App=()=>{
     </BrowserRouter>
     
         <ToastContainer position="top-center" autoClose={3000} />
+
+        <Chatbot/>
     </>
   )
 }
