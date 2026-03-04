@@ -234,7 +234,7 @@ useEffect(()=>{
                    muted 
                    playsInline
                  >
-                   <source src="/Businessmen_Shaking_Hands_Video.mp4" type="video/mp4" />
+                   <source src="meeting video.mp4" type="video/mp4" />
                    Your browser does not support the video tag.
                  </video>
                  
